@@ -16,13 +16,13 @@ def evaluate_decoder():
     counts = []
     excludes = []
     if len(history) == 0: return json.dumps({"answer" : forward_guess(slots, values, history)})
-    if len(history) == 1: return json.dumps({"answer": next_guess(slots, values, history, 0, 5)})
+    if len(history) == 1: return json.dumps({"answer": next_guess(slots, values, history, 0, 5, ans)})
     if len(history) >= 2:
         for x in range (len(history) - 1):
             ans, counts, excludes = study_2(history, x, x+1, ans, counts, excludes)
         old, new = analysis(ans, values, excludes)
         logging.info("ans", ans, counts, excludes)
-        return json.dumps({"answer": next_guess(slots, values, history, old, new)})
+        return json.dumps({"answer": next_guess(slots, values, history, old, new, ans)})
     # if len(history) == 3:
     #     ans, counts, excludes = study_2(history, 0, 1)
     #     ans, counts, excludes = study_2(history, 1, 2, ans, counts, excludes)
