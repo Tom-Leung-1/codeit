@@ -14,7 +14,7 @@ def evaluate_decoder():
     values, slots, history = [data["possible_values"], data["num_slots"], data["history"]]
     if len(history) == 0: return json.dumps({"answer" : backward_guess(slots, values, history)})
     if len(history) == 1: return json.dumps({"answer": forward_guess(slots, values, history)})
-    return json.dumps({"answer": ["p", "l", "h", "j", "v"]})
+    return json.dumps({"answer": ["p", "h", "j", "v", "c"]})
 
 def forward_guess(slots, values, history): # check right symbol in wrong / right position
     answer_list = []
