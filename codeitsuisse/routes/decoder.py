@@ -18,10 +18,10 @@ def evaluate_decoder():
         ans, counts, excludes = study_2(history, 0, 1)
         logging.info("ans", ans, counts, excludes)
         return json.dumps({"answer": next_guess(slots, values, history, 0, 6)})
-    # if len(history) == 3: return json.dumps({"answer": next_guess(slots, values, history, 1, 2)})
-    # if len(history) == 4: return json.dumps({"answer": next_guess(slots, values, history, 2, 3)})
-    # if len(history) == 5: return json.dumps({"answer": next_guess(slots, values, history, 3, 4)})
-    # if len(history) == 6: return json.dumps({"answer": next_guess(slots, values, history, 4, 5)})
+    if len(history) == 3: return json.dumps({"answer": next_guess(slots, values, history, 1, 2)})
+    if len(history) == 4: return json.dumps({"answer": next_guess(slots, values, history, 2, 3)})
+    if len(history) == 5: return json.dumps({"answer": next_guess(slots, values, history, 3, 4)})
+    if len(history) == 6: return json.dumps({"answer": next_guess(slots, values, history, 4, 5)})
     return json.dumps({"answer": ["h", "a", "t", "g", "g"]})
 
 def study_2(h, _0, _1):
