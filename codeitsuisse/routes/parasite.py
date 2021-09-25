@@ -43,17 +43,17 @@ def infection(infect, grid, row, col, time):
     # print("infect", row, col, time)
     infect[row][col] = time
     grid[row][col] = 3
-    if row - 1 >= 0 and (infect[row - 1][col] == -1 or time < infect[row - 1][col]) and grid[row - 1][col] == 1:
-        # print("a")
+    if row - 1 >= 0 and (infect[row - 1][col] == -1 or time < infect[row - 1][col]) and (grid[row - 1][col] == 1 or grid[row - 1][col] == 3):
+        #print("from", row, col, "to", row-1, col, "time", time+1)
         infection(infect, grid, row - 1, col, time + 1)
-    if row + 1 < len(grid) and (infect[row + 1][col] == -1 or time < infect[row + 1][col]) and grid[row + 1][col] == 1:
-        # print("b")
+    if row + 1 < len(grid) and (infect[row + 1][col] == -1 or time < infect[row + 1][col]) and (grid[row + 1][col] == 1 or grid[row + 1][col] == 3):
+        #print("from", row, col, "to", row+1, col, "time", time+1)
         infection(infect, grid, row + 1, col, time + 1)
-    if col - 1 >= 0 and (infect[row][col - 1] == -1 or time < infect[row][col - 1]) and grid[row][col - 1] == 1:
-        # print("c")
+    if col - 1 >= 0 and (infect[row][col - 1] == -1 or time < infect[row][col - 1]) and (grid[row][col - 1] == 1 or grid[row][col - 1] == 3):
+        #print("from", row, col, "to", row, col-1, "time", time+1)
         infection(infect, grid, row, col - 1, time + 1)
-    if col + 1 < len(grid[0]) and (infect[row][col + 1] == -1 or time < infect[row][col + 1]) and grid[row][col+1] == 1:
-        # print("d")
+    if col + 1 < len(grid[0]) and (infect[row][col + 1] == -1 or time < infect[row][col + 1]) and (grid[row][col+1] == 1 or grid[row][col+1] == 3):
+        #print("from", row, col, "to", row, col + 1, "time", time+1)
         infection(infect, grid, row, col + 1, time + 1)
 
 
