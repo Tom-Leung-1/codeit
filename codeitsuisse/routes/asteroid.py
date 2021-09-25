@@ -13,7 +13,7 @@ def evaluate_asteroid():
     logging.info("data sent for evaluation {}".format(data))
     # inputValue = data.get("input")
     result = []
-    for test_case in data:
+    for test_case in data["test_cases"]:
         result.append(asteroid(test_case))
     logging.info("My result :{}".format(result))
     return json.dumps(result)
