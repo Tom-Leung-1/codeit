@@ -12,8 +12,12 @@ def evaluate_decoder():
     data = request.get_json()
     logging.info("data sent for evaluation {}".format(data))
     values, slots, history = [data["possible_values"], data["num_slots"], data["history"]]
-    if len(history) == 0: return json.dumps({"answer" : forward_guess(slots, values, history)})
-    if len(history) == 1: return json.dumps({"answer": two_guess(slots, values, history)})
+    if len(history) == 0: return json.dumps({"answer" : two_guess(slots, values, history, 0, 1)})
+    if len(history) == 1: return json.dumps({"answer": two_guess(slots, values, history, 2, 3)})
+    if len(history) == 2: return json.dumps({"answer": two_guess(slots, values, history, 4, 5)})
+    if len(history) == 3: return json.dumps({"answer": two_guess(slots, values, history, 1, 2)})
+    if len(history) == 4: return json.dumps({"answer": two_guess(slots, values, history, 3, 4)})
+
     return json.dumps({"answer": ["l", "p", "h", "j", "v"]})
 
 def forward_guess(slots, values, history): # check right symbol in wrong / right position
@@ -23,9 +27,9 @@ def forward_guess(slots, values, history): # check right symbol in wrong / right
     logging.info("forward_guess:", "value:", values, "slots", slots, "history", history, "answer_list", answer_list)
     return answer_list
 
-def two_guess(slots, values, history):
-    a = values[-1]
-    b = values[-2]
+def two_guess(slots, values, history, st, nd):
+    a = values[st]
+    b = values[nd]
     logging.info("2 guess:", "value:", values, "slots", slots, "history", history, "answer_list", [a,a,a,b,b])
     return [a,a,a,b,b]
 
