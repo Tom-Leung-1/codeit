@@ -34,6 +34,7 @@ def parasite(test_case):
     # print("grid", grid)
     for x in interested_ind:
         p1_dict[x] = get_ind(x, infect)
+    p2 = get_time_A(infect, grid)
     return {"room": room, "p1" : p1_dict, "p2": 0, "p3": 0, "p4": 0}
 
 
@@ -42,6 +43,15 @@ def get_ind(x, infect):
     row = int(row)
     col = int(col)
     return -1 if infect[row][col] == 0 else infect[row][col]
+
+def get_time_A(infect, grid):
+    max_time = 0
+    for row in range(len(infect)):
+        for col in range(len(infect[0])):
+            if infect[row][col] == -1 and grid[row][col] == 1:
+                return -1
+            max_time = max(infect[row][col], max_time)
+    return max_time
 
 def bfs_infection(queue, grid, infect):
     while len(queue):
