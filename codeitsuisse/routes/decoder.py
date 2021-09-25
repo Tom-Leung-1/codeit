@@ -18,7 +18,7 @@ def evaluate_decoder():
     if len(history) == 0: return json.dumps({"answer" : forward_guess(slots, values, history)})
     if len(history) == 1: return json.dumps({"answer": next_guess(slots, values, history, 0, 5)})
     if len(history) >= 2:
-        for x in range (len(history)):
+        for x in range (len(history) - 1):
             ans, counts, excludes = study_2(history, x, x+1, ans, counts, excludes)
         old, new = analysis(ans, values, excludes)
         logging.info("ans", ans, counts, excludes)
@@ -53,8 +53,9 @@ def analysis(ans, values, excludes, ):
 
 def study_2(h, _0, _1, ans=[0, 0, 0, 0, 0], counts = [], excludes = []):
     history = h[::-1]
+    print(list(str(history[_0]["result"])))
     rw0, rr0 = list(str(history[_0]["result"])) if history[_0]["result"] >= 10 else [0, history[_0]["result"]]
-    rw1, rr1 = list(str(history[_1]["result"])) if history[_0]["result"] >= 10 else [0, history[_0]["result"]]
+    rw1, rr1 = list(str(history[_1]["result"])) if history[_1]["result"] >= 10 else [0, history[_1]["result"]]
     rw0, rr0, rw1, rr1 = [int(rw0), int(rr0), int(rw1), int(rr1)]
     if (rw0 < rw1): # old leave new come
         counts.append(history[_1]["output_received"][0])
