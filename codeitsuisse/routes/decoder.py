@@ -16,10 +16,10 @@ def evaluate_decoder():
     if len(history) == 1: return json.dumps({"answer": next_guess(slots, values, history, 0, 5)})
     if len(history) == 2: return json.dumps({"answer": next_guess(slots, values, history, 0, 6)})
     #ans, count_dict = study_2(history)
-    if len(history) == 3: return json.dumps({"answer": two_guess(slots, values, history, 1, 2)})
-    if len(history) == 4: return json.dumps({"answer": two_guess(slots, values, history, 2, 3)})
-    if len(history) == 5: return json.dumps({"answer": two_guess(slots, values, history, 3, 4)})
-    if len(history) == 6: return json.dumps({"answer": two_guess(slots, values, history, 4, 5)})
+    if len(history) == 3: return json.dumps({"answer": next_guess(slots, values, history, 1, 2)})
+    if len(history) == 4: return json.dumps({"answer": next_guess(slots, values, history, 2, 3)})
+    if len(history) == 5: return json.dumps({"answer": next_guess(slots, values, history, 3, 4)})
+    if len(history) == 6: return json.dumps({"answer": next_guess(slots, values, history, 4, 5)})
     return json.dumps({"answer": ["w", "w", "w", "l", "l"]})
 
 def study_2(history, values):
