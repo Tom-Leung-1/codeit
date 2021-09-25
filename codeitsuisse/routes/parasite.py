@@ -35,7 +35,7 @@ def parasite(test_case):
     for x in interested_ind:
         p1_dict[x] = get_ind(x, infect)
     p2 = get_time_A(infect, grid)
-    return {"room": room, "p1" : p1_dict, "p2": 0, "p3": 0, "p4": 0}
+    return {"room": room, "p1" : p1_dict, "p2": p2, "p3": 0, "p4": 0}
 
 
 def get_ind(x, infect):
