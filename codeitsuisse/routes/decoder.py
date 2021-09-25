@@ -92,7 +92,7 @@ def next_guess(slots, values, history, old, new, ans):
     for idx, a in enumerate(ans):
         if a != 0:
             answer_list[idx] = a
-    while ans[old] == 0:
+    while ans[old] != 0:
         old = old + 1
         answer_list[old] = values[new]
     logging.info("forward_guess:", "value:", values, "slots", slots, "history", history, "answer_list", answer_list)
