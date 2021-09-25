@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 # import requests
 
 @app.route('/tic-tac-toe', methods=['POST'])
-def evaluate():
+def evaluate_tic():
     pass
     # data = request.get_json()
     # logging.info("data sent for evaluation {}".format(data))
