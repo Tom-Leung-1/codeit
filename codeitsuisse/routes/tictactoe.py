@@ -12,13 +12,13 @@ import requests
 def evaluate_tic():
     data = request.get_json()
     logging.info("data sent for evaluation {}".format(data))
-    id = data.get("batteId")
+    id = data["battleId"]
     url = "https://cis2021-arena.herokuapp.com/tic-tac-toe/play/" + id
     print(url)
     response = requests.get(url)
     x = requests.post(url, data={})
     logging.info(response)
     logging.info(x)
-    return json.dumps(response)
+    return json.dumps({})
 
 
