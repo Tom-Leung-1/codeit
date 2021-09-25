@@ -19,6 +19,6 @@ def evaluate():
     x = requests.post(url, data={})
     logging.info(response)
     logging.info(x)
-
+    return json.dumps(response)
 
 
