@@ -52,7 +52,7 @@ def min_energy(infect, grid):
             if infect[row][col] == -1 and grid[row][col] == 1:
                 queue_x.append([row, col, 0])
 
-def back_track(infect, grid):
+def back_track_bfs(infect, grid):
     pass
 
 def get_ind(x, infect):

@@ -1,6 +1,7 @@
 import logging
 import json
-
+import sseclient
+import pprint
 from flask import request, jsonify
 
 from codeitsuisse import app
@@ -14,10 +15,18 @@ def evaluate_tic():
     logging.info("data sent for evaluation {}".format(data))
     id = data["battleId"]
     url = "https://cis2021-arena.herokuapp.com/tic-tac-toe/play/" + id
-    response = requests.get(url)
+    headers = {'Accept': 'text/event-stream'}
+    response = with_requests(url, headers)
+    client = sseclient.SSEClient(response)
+    for event in client.events():
+        logging.info(event)
     # x = requests.post(url, data={})
     logging.info(response['data'])
     # logging.info(x)
     return json.dumps({})
 
+def with_requests(url, headers):
+    """Get a streaming response for the given event feed using requests."""
+    import requests
+    return requests.get(url, stream=True, headers=headers)
 
