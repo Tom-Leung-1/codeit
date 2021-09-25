@@ -19,7 +19,7 @@ def forward_guess(slots, values, history): # check right symbol in wrong / right
     answer_list = []
     for x in range(slots):
         answer_list.append(values[x])
-    logging.info("value:", values, "slots", slots, "history", history, "answer_list", answer_list)
+    logging.info("forward_guess:", "value:", values, "slots", slots, "history", history, "answer_list", answer_list)
     return answer_list
 
 def backward_guess(slots, values, history):
@@ -27,7 +27,7 @@ def backward_guess(slots, values, history):
     r_values = values[::-1]
     for x in range(slots):
         answer_list.append(r_values[x])
-    logging.info("value:", values, "slots", slots, "history", history, "answer_list", answer_list)
+    logging.info("backward guess", "value:", values, "slots", slots, "history", history, "answer_list", answer_list)
     return answer_list
 
 
