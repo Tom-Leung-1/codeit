@@ -40,8 +40,9 @@ def asteroid(str):
         l = origin-1
         r = origin+1
         #1st asteroid
-        while l >= 0 and r < len(str) and str[origin] == str[l] == str[r]:
+        while l >= 0 and str[l] == str[origin]:
             l -= 1
+        while r < len(str) and str[origin] == str[r]:
             r += 1
         dist = r - l - 1
         sum += multiplier(dist)
