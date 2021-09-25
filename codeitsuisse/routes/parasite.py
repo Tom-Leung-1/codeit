@@ -34,14 +34,26 @@ def parasite(test_case):
     bfs_infection(queue, grid, infect)
     bfs_infection_B(queue_b, grid, infect_b)
     p1_dict = {}
-    # print("infect_final", infect)
-    # print("grid", grid)
+    print("infect_final", infect_b)
+    print("grid", grid)
     for x in interested_ind:
         p1_dict[x] = get_ind(x, infect)
     p2 = get_time_A(infect, grid)
     p3 = get_time_A(infect_b, grid)
+    p4 = min_energy(infect, grid)
     return {"room": room, "p1" : p1_dict, "p2": p2, "p3": p3, "p4": 0}
 
+
+def min_energy(infect, grid):
+    queue_x = deque()
+    energy = 0
+    for row in range(len(infect)):
+        for col in range(len(infect[0])):
+            if infect[row][col] == -1 and grid[row][col] == 1:
+                queue_x.append([row, col, 0])
+
+def back_track(infect, grid):
+    pass
 
 def get_ind(x, infect):
     [row, col] = x.split(',')
@@ -57,6 +69,7 @@ def get_time_A(infect, grid):
                 return -1
             max_time = max(infect[row][col], max_time)
     return max_time
+
 
 def bfs_infection(queue, grid, infect):
     while len(queue):

@@ -36,6 +36,7 @@ def asteroid(str):
     score = 0
     final_origin = None
     for origin in mid_pts:
+        # collision = []
         sum = 0
         l = origin-1
         r = origin+1
@@ -45,6 +46,7 @@ def asteroid(str):
         while r < len(str) and str[origin] == str[r]:
             r += 1
         dist = r - l - 1
+        # collision.append([str[r-1], origin, dist])
         sum += multiplier(dist)
         # others
         while l >= 0 and r < len(str) and str[l] == str[r]:
@@ -57,10 +59,12 @@ def asteroid(str):
             dist = (l - more_l + more_r - r)
             l = more_l
             r = more_r
+            # collision.append([str[r - 1], dist])
             sum += multiplier(dist)
         if score < sum:
             score = sum
             final_origin = origin
+            # print(collision)
     return {"input" : str, "score" : int(score), "origin" : final_origin}
 
 def multiplier(dist):
