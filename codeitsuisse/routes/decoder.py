@@ -57,7 +57,10 @@ def study_2(h, _0, _1, ans=[0, 0, 0, 0, 0], counts = [], excludes = []):
     rw0, rr0 = list(str(history[_0]["result"])) if history[_0]["result"] >= 10 else [0, history[_0]["result"]]
     rw1, rr1 = list(str(history[_1]["result"])) if history[_1]["result"] >= 10 else [0, history[_1]["result"]]
     rw0, rr0, rw1, rr1 = [int(rw0), int(rr0), int(rw1), int(rr1)]
-    if (rw0 < rw1): # old leave new come
+    if (rw1) == 5:
+        counts = history[_1]["output_received"]
+
+    if (rw0 < rw1 ): # old leave new come
         counts.append(history[_1]["output_received"][0])
         excludes.append(history[_0]["output_received"][0])
     elif (rw0 > rw1):
@@ -67,6 +70,9 @@ def study_2(h, _0, _1, ans=[0, 0, 0, 0, 0], counts = [], excludes = []):
         ans[0] = history[_1]["output_received"][0]
     elif (rr0 > rr1):
         ans[0] = history[_0]["output_received"][0]
+    for x in ans:
+        if x != 0 and x in excludes:
+            excludes.remove(x)
     return ans, counts, excludes
 
 
@@ -86,7 +92,9 @@ def next_guess(slots, values, history, old, new, ans):
     for idx, a in enumerate(ans):
         if a != 0:
             answer_list[idx] = a
-    answer_list[old] = values[new]
+    while ans[old] == 0:
+        old = old + 1
+        answer_list[old] = values[new]
     logging.info("forward_guess:", "value:", values, "slots", slots, "history", history, "answer_list", answer_list)
     return answer_list
 
