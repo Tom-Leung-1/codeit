@@ -65,7 +65,7 @@ def asteroid(str):
             score = sum
             final_origin = origin
             # print(collision)
-    return {"input" : str, "score" : int(score), "origin" : final_origin}
+    return {"input" : str, "score" : score, "origin" : final_origin}
 
 def multiplier(dist):
     if 7 <= dist <= 9: return dist * 1.5
