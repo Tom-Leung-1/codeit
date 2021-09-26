@@ -42,11 +42,34 @@ def sh(test_case):
     print(grid, risk)
     # transpose
     grid = [list(x) for x in zip(*grid)]
-    return {"gridMap": grid, "minimumCost": 9}
+    risk = [list(x) for x in zip(*risk)]
+    cost = get_smallest_cost(risk, exit)
+    return {"gridMap": grid, "minimumCost": cost}
+
+def get_smallest_cost(risk, exit):
+    # dp
+    dp = [[get_int(risk[x][y] % 3) for y in range(len(risk[0]))] for x in range(len(risk))]
+    print(dp)
+    for x in range(len(risk)):
+        for y in range(len(risk[0])):
+            if x == 0 and y == 0: dp[x][y] = 0
+            elif x == 0:
+                dp[x][y] = dp[x][y] + dp[x][y-1]
+            elif y == 0:
+                dp[x][y] = dp[x-1][y] + dp[x][y]
+            else:
+                dp[x][y] = min(dp[x][y] + dp[x-1][y], dp[x][y] + dp[x][y-1])
+    print(dp)
+    return dp[exit["first"]][exit["second"]]
 
 def get_sym(x):
     if x == 0: return "L"
     if x == 1: return "M"
     return "S"
+
+def get_int(x):
+    if x == 0: return 3
+    if x == 1: return 2
+    return 1
 
 
